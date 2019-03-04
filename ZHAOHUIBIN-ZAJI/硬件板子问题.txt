@@ -1,0 +1,22 @@
+结论：板子问题  换了MCU好了
+复位是虚焊了
+
+结论：中断线[9:5]是可以区分开的 
+但是PA0 PB0 PC0这样是不行
+淘宝的板子我做了实验
+	else  if(GPIO_Pin==KEYE0_Pin)
+	{
+				HAL_Delay(2);
+				if(HAL_GPIO_ReadPin(KEYE0_GPIO_Port,KEYE0_Pin)==0)
+				printf("KEYE0_Pin--");
+
+
+#if SAME
+				else if(HAL_GPIO_ReadPin(KEYE00_GPIO_Port,KEYE00_Pin)==0)
+				printf("KEYE00_Pin--");
+				
+		    else
+				 printf("NOT KNOW--");
+#endif
+
+PC0 PE0都在中断线的时候 一个都不会响应  所以还是设计的时候需要注意！！！
